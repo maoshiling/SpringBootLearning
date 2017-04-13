@@ -1,0 +1,106 @@
+-- -----------------------------------------------------
+-- Table hust.DEPARTMENT
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS DEPARTMENT ;
+
+CREATE TABLE IF NOT EXISTS DEPARTMENT(
+  ID INT NOT NULL AUTO_INCREMENT COMMENT '学院ID',
+  NAME VARCHAR(45) NULL COMMENT '学院名称',
+  CREATED_BY VARCHAR(45) NULL COMMENT '创建者',
+  CREATED_AT TIMESTAMP NULL COMMENT '创建时间',
+  MODIFIED_BY VARCHAR(45) NULL COMMENT '修改者',
+  MODIFIED_AT TIMESTAMP NULL COMMENT '修改时间',
+  VERSION INT NULL COMMENT '版本号',
+  PRIMARY KEY (ID));
+
+-- -----------------------------------------------------
+-- Table hust.USER
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS USER ;
+
+CREATE TABLE IF NOT EXISTS USER (
+  ID INT NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  USERNAME VARCHAR(45) NULL COMMENT '用户名',
+  PASSWORD VARCHAR(45) NULL COMMENT '密码',
+  NAME VARCHAR(45) NULL COMMENT '真实姓名',
+  BIRTHDAY DATE NULL COMMENT '出生日期',
+  SEX VARCHAR(1) NULL COMMENT '性别',
+  DEPARTMENT_ID INT NULL COMMENT '所属院系',
+  CREATED_BY VARCHAR(45) NULL COMMENT '创建者',
+  CREATED_AT TIMESTAMP NULL COMMENT '创建时间',
+  MODIFIED_BY VARCHAR(45) NULL COMMENT '修改者',
+  MODIFIED_AT TIMESTAMP NULL COMMENT '修改时间',
+  VERSION INT NULL COMMENT '版本号',
+  PRIMARY KEY (ID));
+
+
+-- -----------------------------------------------------
+-- Table hust.ROLE
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS ROLE ;
+
+CREATE TABLE IF NOT EXISTS ROLE (
+  ROLE_CODE VARCHAR(45) NOT NULL COMMENT '角色编码',
+  ROLE_NAME VARCHAR(45) NULL COMMENT '角色名称',
+  CREATED_BY VARCHAR(45) NULL COMMENT '创建者',
+  CREATED_AT TIMESTAMP NULL COMMENT '创建时间',
+  MODIFIED_BY VARCHAR(45) NULL COMMENT '修改者',
+  MODIFIED_AT TIMESTAMP NULL COMMENT '修改时间',
+  VERSION INT NULL COMMENT '版本号',
+  PRIMARY KEY (ROLE_CODE));
+
+
+-- -----------------------------------------------------
+-- Table hust.CATEGORY
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS CATEGORY ;
+
+CREATE TABLE IF NOT EXISTS CATEGORY (
+  ID INT NOT NULL AUTO_INCREMENT COMMENT '功能组ID',
+  NAME VARCHAR(45) NULL COMMENT '功能组名称',
+  CREATED_BY VARCHAR(45) NULL COMMENT '创建者',
+  CREATED_AT TIMESTAMP NULL COMMENT '创建时间',
+  MODIFIED_BY VARCHAR(45) NULL COMMENT '修改者',
+  MODIFIED_AT TIMESTAMP NULL COMMENT '修改时间',
+  VERSION INT NULL COMMENT '版本号',
+  PRIMARY KEY (ID));
+
+
+-- -----------------------------------------------------
+-- Table hust.FUNCTION
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS FUNCTION ;
+
+CREATE TABLE IF NOT EXISTS FUNCTION (
+  ID INT NOT NULL AUTO_INCREMENT COMMENT '功能ID',
+  NAME VARCHAR(45) NULL COMMENT '功能名称',
+  URL VARCHAR(45) NULL COMMENT '功能对应URL',
+  CATEGORY_ID INT NULL COMMENT '所属功能组',
+  CREATED_BY VARCHAR(45) NULL COMMENT '创建者',
+  CREATED_AT TIMESTAMP NULL COMMENT '创建时间',
+  MODIFIED_BY VARCHAR(45) NULL COMMENT '修改者',
+  MODIFIED_AT TIMESTAMP NULL COMMENT '修改时间',
+  VERSION INT NULL COMMENT '版本号',
+  PRIMARY KEY (ID));
+
+
+-- -----------------------------------------------------
+-- Table hust.USER_ROLE
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS USER_ROLE ;
+
+CREATE TABLE IF NOT EXISTS USER_ROLE (
+  USER_ID INT NOT NULL COMMENT '用户ID',
+  ROLE_CODE VARCHAR(45) NOT NULL COMMENT '角色编码',
+  PRIMARY KEY (USER_ID, ROLE_CODE));
+
+
+-- -----------------------------------------------------
+-- Table hust.ROLE_FUNCTION
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS ROLE_FUNCTION ;
+
+CREATE TABLE IF NOT EXISTS ROLE_FUNCTION (
+  ROLE_CODE VARCHAR(45) NOT NULL COMMENT '角色编码',
+  FUNCTION_ID INT NOT NULL COMMENT '功能ID',
+  PRIMARY KEY (ROLE_CODE, FUNCTION_ID));
